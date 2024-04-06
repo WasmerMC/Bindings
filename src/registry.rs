@@ -41,3 +41,19 @@ pub fn register_block(identifier: String, block_settings: BlockSettings) -> Resu
 
     Ok(())
 }
+
+pub fn register_block_item(identifier: String, item_settings: ItemSettings) -> Result<(), serde_json::Error>  {
+    let data = serde_json::to_string(&item_settings)?;
+
+    let id_len = identifier.len() as i32;
+    let id_off = identifier.as_ptr() as i32;
+
+    let dt_len = data.len() as i32;
+    let dt_off = data.as_ptr() as i32;
+
+    unsafe {
+        registry_register(2, id_len, id_off, dt_len, dt_off);
+    }
+
+    Ok(())
+}

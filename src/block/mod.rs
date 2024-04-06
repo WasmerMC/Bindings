@@ -3,8 +3,18 @@ use serde_json::Result;
 
 #[derive(Serialize, Deserialize)]
 pub struct BlockSettings {
-    pub max_count: Option<i32>,
-    pub max_damage_if_absent: Option<i32>,
-    pub max_damage: Option<i32>,
-    pub fireproof: Option<bool>
+    pub burnable: bool,
+    pub collidable: bool,
+    pub liquid: bool,
+    pub luminance: i32,
+    pub requires_tool: bool,
+    pub resistance: f32,
+    pub break_by_hand: bool,
+    pub break_instantly: bool,
+    pub map_color: MapColor
+}
+
+#[derive(Serialize, Deserialize)]
+pub enum MapColor {
+    BLACK = 0
 }
